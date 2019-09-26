@@ -58,7 +58,7 @@ void main()
 	insert(2);			
 	insert(3);		
 	insert(4);			
-	insert(5);			// list is 2,4,6,5
+	insert(5);			// list is 2,3,4,5
 	print();
 	int n;
 	printf("Enter a position : ");
