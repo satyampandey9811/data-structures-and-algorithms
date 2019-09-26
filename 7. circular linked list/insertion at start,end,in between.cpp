@@ -70,14 +70,24 @@ struct Node *addAfter(struct Node *last, int data, int item)
 	p = last -> next; 
 	temp=(struct Node*)malloc(sizeof(struct Node));
 	temp->data=data;
-	while(p!=NULL and p->data!=item){
+	while(p!=last and p->data!=item){
 	    p=p->next;
 	}
-	if(p!=NULL){
+	if(p!=last){
 	    temp->next=p->next;
 	    p->next=temp;
 	}
-	if(p==last) last=p->next;
+	else{
+	    if(p->data==item){
+	        temp->next=last->next;
+	        last->next=temp;
+	        last=temp;
+	    }
+	    else{
+	        cout<<"element "<<item<<" is not in the list"<<endl;
+	        cout<<"so , the data "<<data<<" can't be added"<<endl;
+	    }
+	}
     return last;
 } 
 
@@ -113,10 +123,11 @@ int main()
 	last = addBegin(last, 2); 
 	last = addEnd(last, 8); 
 	last = addEnd(last, 12); 
-	last = addAfter(last, 14, 12); // adding at the end
-	last = addAfter(last, 10, 8); 
+	last = addAfter(last, 14, 12); // adding after 12 which is at the end
+	last = addAfter(last, 10, 8);  // adding after 8
+	last = addAfter(last, 16, 15); // adding after 15 which is not in the list 
 
 	traverse(last); 
 
 	return 0; 
-} 
+}
