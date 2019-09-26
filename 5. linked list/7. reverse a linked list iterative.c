@@ -56,7 +56,7 @@ void main()
 	insert(2);			
 	insert(4);		
 	insert(6);			
-	insert(8);			// list is 2,4,6,5
+	insert(8);			// list is 2,4,6,8
 	print();
 	reverse();
 	print();	
