@@ -8,21 +8,24 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int findRotationCount(vector<int> a,int n){
-	int low=0,high=n-1;
-	while(low<=high){
-		if(a[low]<=a[high])   // case 1
-			return low;
-		int mid=low+(high-low)/2;
-		int next=(mid+1)%n , prev=(mid-1+n)%n;
-		if(a[mid]<=a[next] and a[mid]<=a[prev])   // case 2
-			return mid;
-		else if(a[mid]<=a[high])   // case 3
-			high=mid-1;
-		else if(a[mid]>=a[low])   // case 4
-			low=mid+1;
+int findRotationCount(vector<int> nums,int n){
+	int ans = 0;
+	int low = 0, high = n - 1, mid;
+	while(low <= high){
+		mid = low + (high - low) / 2;            
+		if(nums[mid] >= nums[0])
+			low = mid + 1;
+		else {
+			if(mid < 1) break;
+			if(nums[mid] > nums[mid - 1])
+				high = mid - 1;
+			else{
+				ans = mid;
+				break;
+			}
+		}
 	}
-	return -1;
+	return ans;
 }
 
 int main(){
