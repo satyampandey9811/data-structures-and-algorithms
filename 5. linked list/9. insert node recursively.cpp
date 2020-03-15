@@ -13,8 +13,8 @@ public:
 
 Node* insertNodeRec(Node *head, int i, int data) {
     
-  if(head == NULL and i != 0)
-    return head;
+  if(head == NULL and i != 0)				// for inserting at the last of the linked list
+    return head;							// that is it should be the last element of the ll
   
   if(i == 0)
   {
