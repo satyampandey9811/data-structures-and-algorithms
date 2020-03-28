@@ -50,24 +50,24 @@ TreeNode<int>* maxSumNode(TreeNode<int> *root){
     if(root == NULL)
         return NULL;
     TreeNode<int>* ans;
-    queue<pair<TreeNode<int>*, int>> q;        
-    q.push({root, root -> data});
+    queue<TreeNode<int>*> q;
+    q.push(root);
     int sum, curr, res = 0;
 
     while(q.size() != 0){
-        TreeNode<int>* front = q.front().first;
+        TreeNode<int>* front = q.front();
         sum = 0;
         q.pop();
         for(int i = 0; i < front -> children.size(); i++){
             curr = front -> children[i] -> data;
             sum += curr;
-            q.push({front -> children[i], curr});            
+            q.push(front -> children[i]);
         }
         sum += front -> data;
         if(res < sum){
             res = sum;
             ans = front;
-        }        
+        }
     }
     return ans;
 }
